@@ -65,7 +65,7 @@ module.exports = async (client, data) => {
               embeds: [
                 new MessageEmbed()
                   .setColor("#00FFFF")
-                  .setTitle(`Leave Application Form`)
+                  .setTitle(`Application Form`)
                   .setDescription(
                     "Click on the below apply button to fill the leave application form"
                   )
@@ -136,24 +136,6 @@ module.exports = async (client, data) => {
               .setRequired(true)
               .setPlaceholder(`Your Name`)
               .setStyle("SHORT");
-  
-            const user_game_name = new TextInputComponent()
-              .setCustomId("ap_usergamename")
-              .setLabel(`What is your in game name ?`.substring(0, 45))
-              .setMinLength(4)
-              .setMaxLength(50)
-              .setRequired(true)
-              .setPlaceholder(`Your In Game Name`)
-              .setStyle("SHORT");
-              
-            const user_game_uid = new TextInputComponent()
-              .setCustomId("ap_usergameuid")
-              .setLabel(`Give your game uid code ?`.substring(0, 45))
-              .setMinLength(4)
-              .setMaxLength(50)
-              .setRequired(true)
-              .setPlaceholder(`Your Game UID CODE ?`)
-              .setStyle("SHORT");
 
             const user_why = new TextInputComponent()
               .setCustomId("ap_userwhy")
@@ -165,10 +147,8 @@ module.exports = async (client, data) => {
               .setStyle("SHORT");
 
             let row_username = new MessageActionRow().addComponents(user_name);
-            let row_usergamename = new MessageActionRow().addComponents(user_game_name);
-            let row_usergameuid = new MessageActionRow().addComponents(user_game_uid);
             let row_userwhy = new MessageActionRow().addComponents(user_why);
-            application_modal.addComponents(row_username, row_usergamename, row_usergameuid, row_userwhy);
+            application_modal.addComponents(row_username, row_userwhy);
 
             await interaction.showModal(application_modal);
           }
@@ -231,8 +211,6 @@ module.exports = async (client, data) => {
     // for modals
     if (interaction.isModalSubmit()) {
       let user_name = interaction.fields.getTextInputValue("ap_username");
-      let user_game_name = interaction.fields.getTextInputValue("ap_usergamename");
-      let user_game_uid = interaction.fields.getTextInputValue("ap_usergameuid");
       let user_why = interaction.fields.getTextInputValue("ap_userwhy");   
 
       let reviewChannel = interaction.guild.channels.cache.get(
@@ -264,14 +242,6 @@ module.exports = async (client, data) => {
               {
                 name: `What is your name ?`,
                 value: `> ${user_name}`,
-              },
-              {
-                name: `What is your in game name ?`,
-                value: `> ${user_game_name}`,
-              },
-              {
-                name: `Give your game uid code ?`,
-                value: `> ${user_game_uid}`,
               },
               {
                 name: `Why do you want to leave ?`,
