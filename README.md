@@ -6,7 +6,7 @@
 
 3. Install all of the packages with "npm install" | the important packages are "npm install discord.js"
 
-4 Fill in the parameters, RIGHT in "./data/config.json"!
+4. Fill in the parameters, RIGHT in "./data/config.json"!
 
 5. start the bot with "node index.js if" you dont wanna shard it!
 
